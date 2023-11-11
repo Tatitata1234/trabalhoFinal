@@ -1,10 +1,11 @@
-package service.util;
+package main.service.util;
 
-import entity.Produto;
-import entity.dto.ProdutoDTO;
-import exception.ValidateProdutoException;
-import service.ProdutoService;
+import main.entity.Produto;
+import main.entity.dto.ProdutoDTO;
+import main.exception.ValidateProdutoException;
+import main.service.ProdutoService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuUtils {
@@ -15,6 +16,10 @@ public class MenuUtils {
     public static final String DIGITE_O_NOME_DO_PRODUTO = "Digite o nome do produto:";
 
     static Scanner input = new Scanner(System.in);
+
+    private MenuUtils(){
+    }
+
     public static void exibeMenuOpcoes() {
         System.out.println("1: Insere");
         System.out.println("2: Adicionar quantidade");
@@ -75,7 +80,7 @@ public class MenuUtils {
         System.out.println("Menu produtos:");
     }
 
-    public static void processaOpcaoMenu(ProdutoService produtoService, int opcao) {
+    public static void processaOpcaoMenu(ProdutoService produtoService, int opcao, List<Produto> produtos) {
         ProdutoDTO dto;
         try {
             switch (opcao) {
@@ -94,16 +99,13 @@ public class MenuUtils {
                 case 4 -> produtoService.listar();
                 case 5 -> produtoService.listarAbaixoEstoque();
                 case 6 -> {
-                    ArquivoUtils.salvarArquivo();
+                    ArquivoUtils.salvarArquivo(produtos);
                     MenuUtils.sair();
                 }
                 default -> MenuUtils.caminhoErrado();
             }
         } catch (ValidateProdutoException e) {
-            System.out.println("ERRO!");
-            System.out.println(e.getMessage());
-            System.out.println("ERRO!");
-            System.out.println("Tente novamente");
+            ExceptionUtils.trataErro("Tente novamente", e);
         }
     }
 }

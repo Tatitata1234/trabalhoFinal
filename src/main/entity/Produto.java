@@ -1,4 +1,4 @@
-package entity;
+package main.entity;
 
 public class Produto {
     private int codigo;
@@ -55,5 +55,9 @@ public class Produto {
 
     public void adicionaQuantidade(int quant) {
         this.quantidade += quant;
+    }
+
+    public void retiraQuantidade(int quant) {
+        this.quantidade -= quant;
     }
 }

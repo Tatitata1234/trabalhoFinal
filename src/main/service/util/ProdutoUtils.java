@@ -1,7 +1,6 @@
-package service.util;
+package main.service.util;
 
-import entity.Produto;
-import exception.ValidateProdutoException;
+import main.entity.Produto;
 
 import java.util.List;
 

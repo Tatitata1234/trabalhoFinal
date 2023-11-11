@@ -1,9 +1,9 @@
-import entity.Produto;
-import entity.dto.ProdutoDTO;
-import exception.ValidateProdutoException;
-import service.ProdutoService;
-import service.util.ArquivoUtils;
-import service.util.MenuUtils;
+package main;
+
+import main.entity.Produto;
+import main.service.ProdutoService;
+import main.service.util.ArquivoUtils;
+import main.service.util.MenuUtils;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class Main {
         do {
             MenuUtils.exibeMenuOpcoes();
             opcao = MenuUtils.selecionaOpcaoMenu();
-            MenuUtils.processaOpcaoMenu(produtoService, opcao);
+            MenuUtils.processaOpcaoMenu(produtoService, opcao, produtos);
         } while (opcao != 6);
     }
 }

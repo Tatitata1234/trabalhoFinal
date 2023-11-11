@@ -1,4 +1,4 @@
-package entity.dto;
+package main.entity.dto;
 
 public class ProdutoDTO {
     private int id;
