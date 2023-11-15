@@ -23,4 +23,13 @@ public class ProdutoUtils {
         }
         return null;
     }
+
+    public static Produto fillProduto(String[] temp) {
+        return new Produto(
+                Integer.parseInt(temp[0]),
+                temp[1],
+                Integer.parseInt(temp[2]),
+                Integer.parseInt(temp[3])
+        );
+    }
 }

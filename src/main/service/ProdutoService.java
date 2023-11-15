@@ -5,6 +5,7 @@ import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
 import main.service.validator.ProdutoValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoService {
@@ -31,17 +32,22 @@ public class ProdutoService {
         produto.adicionaQuantidade(dto.getQuant());
     }
 
-    public void listar() {
+    public List<String> listar() {
+        List<String> strings = new ArrayList<>();
         for (Produto prod : produtos) {
-            System.out.println(prod.toString());
+            strings.add(prod.toString());
         }
+        return strings;
     }
 
-    public void listarAbaixoEstoque() {
+    public List<String> listarAbaixoEstoque() {
+        List<String> strings = new ArrayList<>();
         for (Produto prod : produtos) {
-            if (prod.getQuantidade() < prod.getQuantidadeMinima())
-                System.out.println(prod.toString());
+            if (prod.getQuantidade() < prod.getQuantidadeMinima()) {
+                strings.add(prod.toString());
+            }
         }
+        return strings;
     }
 
     public List<Produto> getProdutos() {

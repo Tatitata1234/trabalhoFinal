@@ -5,6 +5,8 @@ import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
 import main.service.ProdutoService;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +19,7 @@ public class MenuUtils {
 
     static Scanner input = new Scanner(System.in);
 
-    private MenuUtils(){
+    private MenuUtils() {
     }
 
     public static void exibeMenuOpcoes() {
@@ -31,10 +33,15 @@ public class MenuUtils {
     }
 
     public static Integer getInteger(String message) {
-        System.out.println(message);
         int id;
-        id = input.nextInt();
-        input.nextLine();
+        try {
+            System.out.println(message);
+            id = input.nextInt();
+            input.nextLine();
+        } catch (InputMismatchException e) {
+            input = new Scanner(System.in);
+            id = getInteger(message);
+        }
         return id;
     }
 
@@ -96,8 +103,8 @@ public class MenuUtils {
                     dto = MenuUtils.getProdutoDTOFromUser();
                     produtoService.retirarQuant(dto);
                 }
-                case 4 -> produtoService.listar();
-                case 5 -> produtoService.listarAbaixoEstoque();
+                case 4 -> System.out.println(Arrays.toString(produtoService.listar().toArray()));
+                case 5 -> System.out.println(Arrays.toString(produtoService.listarAbaixoEstoque().toArray()));
                 case 6 -> {
                     ArquivoUtils.salvarArquivo(produtos);
                     MenuUtils.sair();

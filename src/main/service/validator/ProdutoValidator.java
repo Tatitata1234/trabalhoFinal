@@ -55,7 +55,7 @@ public class ProdutoValidator {
     }
 
     private static void validaDiferencaQuantidades(ProdutoDTO dto, Produto produto) throws ValidateProdutoException {
-        if (produto.getQuantidadeMinima() - dto.getQuant() < 0)
+        if (produto.getQuantidade() - dto.getQuant() < 0)
             throw new ValidateProdutoException("Quantidade" + INVALIDA);
     }
 

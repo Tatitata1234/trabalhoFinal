@@ -22,7 +22,7 @@ public class ArquivoUtils {
 
             while (s != null) {
                 String[] temp = s.split(",");
-                Produto produto = fillProduto(temp);
+                Produto produto = ProdutoUtils.fillProduto(temp);
                 produtos.add(produto);
                 s = br.readLine();
             }
@@ -33,20 +33,14 @@ public class ArquivoUtils {
         return produtos;
     }
 
-    private static Produto fillProduto(String[] temp) {
-        return new Produto(
-                Integer.parseInt(temp[0]),
-                temp[1],
-                Integer.parseInt(temp[2]),
-                Integer.parseInt(temp[3])
-        );
-    }
+
 
     public static void salvarArquivo(List<Produto> produtos) {
         try {
             OutputStream os = new FileOutputStream("produtos2.txt");
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
+
             for (Produto prod :
                     produtos) {
                 bw.write(prod.toString() + "\n");

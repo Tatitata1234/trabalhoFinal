@@ -18,7 +18,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return codigo + "," + nome + "," + quantidade + "," + quantidadeMinima;
+        return codigo + "\t|" + nome + "\t|" + quantidade + "\t|" + quantidadeMinima;
     }
 
     public int getCodigo() {
