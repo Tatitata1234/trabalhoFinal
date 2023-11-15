@@ -10,6 +10,10 @@ public class Estoque {
     }
 
     public static List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public static List<Produto> getProdutosListado() {
         int i = 0;
 
         while (i < (Estoque.produtos.size() - 1) ) {

@@ -38,11 +38,11 @@ public class ArquivoUtils {
 
     public static void salvarArquivo() {
         try {
-            OutputStream os = new FileOutputStream("produtos2.txt");
+            OutputStream os = new FileOutputStream("produtos.txt");
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
 
-            for (Produto prod : Estoque.getProdutos()) {
+            for (Produto prod : Estoque.getProdutosListado()) {
                 bw.write(prod.formatarSaida() + "\n");
             }
 

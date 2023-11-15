@@ -33,7 +33,7 @@ public class ProdutoService {
 
     public List<String> listar() {
         List<String> strings = new ArrayList<>();
-        for (Produto prod : Estoque.getProdutos()) {
+        for (Produto prod : Estoque.getProdutosListado()) {
             strings.add(prod.toString());
         }
         return strings;
@@ -41,7 +41,7 @@ public class ProdutoService {
 
     public List<String> listarAbaixoEstoque() {
         List<String> strings = new ArrayList<>();
-        for (Produto prod : Estoque.getProdutos()) {
+        for (Produto prod : Estoque.getProdutosListado()) {
             if (prod.getQuantidade() < prod.getQuantidadeMinima()) {
                 strings.add(prod.toString());
             }

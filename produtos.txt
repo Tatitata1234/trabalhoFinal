@@ -1,3 +1,4 @@
 1,Caneca de cerâmica,10,5
 2,Estojo rose,67,4
+3,Garrafa,13,3
 345,Canete,2,5
