@@ -1,5 +1,6 @@
 package main.service.validator;
 
+import main.entity.Estoque;
 import main.entity.Produto;
 import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
@@ -18,7 +19,7 @@ public class ProdutoValidator {
     private ProdutoValidator() {
     }
 
-    public static void insere(Produto produto, List<Produto> produtos) throws ValidateProdutoException {
+    public static void insere(Produto produto) throws ValidateProdutoException {
         if (Objects.isNull(produto))
             throw new ValidateProdutoException("Produto nulo");
 
@@ -31,23 +32,23 @@ public class ProdutoValidator {
         if (produto.getNome().isEmpty() || produto.getNome().isBlank())
             throw new ValidateProdutoException("Nome" + DO_PRODUTO_INVALIDO);
 
-        if (Objects.nonNull(ProdutoUtils.findById(produto.getCodigo(), produtos)))
+        if (Objects.nonNull(ProdutoUtils.findById(produto.getCodigo())))
             throw new ValidateProdutoException("Código" + JA_EXISTE);
 
-        if (Objects.nonNull(ProdutoUtils.findByNome(produto.getNome(), produtos)))
+        if (Objects.nonNull(ProdutoUtils.findByNome(produto.getNome(), Estoque.getProdutos())))
             throw new ValidateProdutoException("Nome" + JA_EXISTE);
     }
 
-    public static Produto adicionarQuant(ProdutoDTO dto, List<Produto> produtos) throws ValidateProdutoException {
+    public static Produto adicionarQuant(ProdutoDTO dto) throws ValidateProdutoException {
         validaQuantidade(dto.getQuant());
 
-        return getProduto(dto, produtos);
+        return getProduto(dto);
     }
 
-    public static Produto retirarQuant(ProdutoDTO dto, List<Produto> produtos) throws ValidateProdutoException {
+    public static Produto retirarQuant(ProdutoDTO dto) throws ValidateProdutoException {
         validaQuantidade(dto.getQuant());
 
-        Produto produto = getProduto(dto, produtos);
+        Produto produto = getProduto(dto);
 
         validaDiferencaQuantidades(dto, produto);
 
@@ -64,8 +65,8 @@ public class ProdutoValidator {
             throw new ValidateProdutoException("Quantidade " + INVALIDA);
     }
 
-    private static Produto getProduto(ProdutoDTO dto, List<Produto> produtos) throws ValidateProdutoException {
-        Produto produto = ProdutoUtils.findById(dto.getId(), produtos);
+    private static Produto getProduto(ProdutoDTO dto) throws ValidateProdutoException {
+        Produto produto = ProdutoUtils.findById(dto.getId());
         if (Objects.isNull(produto))
             throw new ValidateProdutoException("Produto" + NAO_EXISTE);
         return produto;

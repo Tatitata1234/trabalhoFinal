@@ -1,5 +1,6 @@
 package main.service.util;
 
+import main.entity.Estoque;
 import main.entity.Produto;
 
 import java.io.*;
@@ -35,15 +36,14 @@ public class ArquivoUtils {
 
 
 
-    public static void salvarArquivo(List<Produto> produtos) {
+    public static void salvarArquivo() {
         try {
             OutputStream os = new FileOutputStream("produtos2.txt");
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
 
-            for (Produto prod :
-                    produtos) {
-                bw.write(prod.toString() + "\n");
+            for (Produto prod : Estoque.getProdutos()) {
+                bw.write(prod.formatarSaida() + "\n");
             }
 
             bw.close();

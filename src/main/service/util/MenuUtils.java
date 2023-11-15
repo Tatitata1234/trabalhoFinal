@@ -17,7 +17,7 @@ public class MenuUtils {
     public static final String DIGITE_A_QUANTIDADE_MINIMA_DO_PRODUTO = "Digite a quantidade mínima do produto:";
     public static final String DIGITE_O_NOME_DO_PRODUTO = "Digite o nome do produto:";
 
-    static Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in);
 
     private MenuUtils() {
     }
@@ -87,7 +87,7 @@ public class MenuUtils {
         System.out.println("Menu produtos:");
     }
 
-    public static void processaOpcaoMenu(ProdutoService produtoService, int opcao, List<Produto> produtos) {
+    public static void processaOpcaoMenu(ProdutoService produtoService, int opcao) {
         ProdutoDTO dto;
         try {
             switch (opcao) {
@@ -106,7 +106,7 @@ public class MenuUtils {
                 case 4 -> System.out.println(Arrays.toString(produtoService.listar().toArray()));
                 case 5 -> System.out.println(Arrays.toString(produtoService.listarAbaixoEstoque().toArray()));
                 case 6 -> {
-                    ArquivoUtils.salvarArquivo(produtos);
+                    ArquivoUtils.salvarArquivo();
                     MenuUtils.sair();
                 }
                 default -> MenuUtils.caminhoErrado();

@@ -3,7 +3,6 @@ package main.service.util;
 public class ExceptionUtils {
 
     private ExceptionUtils(){
-
     }
 
     public static void trataErro(String message, Exception e) {

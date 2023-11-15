@@ -1,5 +1,6 @@
 package main.service.util;
 
+import main.entity.Estoque;
 import main.entity.Produto;
 
 import java.util.List;
@@ -8,8 +9,8 @@ public class ProdutoUtils {
 
     private ProdutoUtils(){
     }
-    public static Produto findById(int id, List<Produto> produtos) {
-        for (Produto prod : produtos) {
+    public static Produto findById(int id) {
+        for (Produto prod : Estoque.getProdutos()) {
             if (prod.getCodigo() == id)
                 return prod;
         }

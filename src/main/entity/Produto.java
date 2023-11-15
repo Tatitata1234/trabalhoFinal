@@ -6,8 +6,6 @@ public class Produto {
     private int quantidade;
     private int quantidadeMinima;
 
-    public Produto() {
-    }
 
     public Produto(int codigo, String nome, int quantidade, int quantidadeMinima) {
         this.codigo = codigo;
@@ -18,7 +16,11 @@ public class Produto {
 
     @Override
     public String toString() {
-        return codigo + "\t|" + nome + "\t|" + quantidade + "\t|" + quantidadeMinima;
+        return "\n" + codigo + "\t|" + nome + "\t|" + quantidade + "\t|" + quantidadeMinima;
+    }
+
+    public String formatarSaida() {
+        return codigo + "," + nome + "," + quantidade + "," + quantidadeMinima;
     }
 
     public int getCodigo() {
