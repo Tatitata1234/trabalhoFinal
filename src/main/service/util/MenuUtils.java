@@ -63,8 +63,8 @@ public class MenuUtils {
 
     public static void sair() {
         timeout(2);
-        System.out.println("Saindo....");
-        System.out.println("Até a próxima!");
+        System.out.println(ColorUtils.PURPLE_BOLD + "Saindo....");
+        System.out.println("Até a próxima! " + ColorUtils.RESET);
     }
 
     public static ProdutoDTO getProdutoDTOFromUser() {
@@ -85,8 +85,7 @@ public class MenuUtils {
     }
 
     public static void caminhoErrado() {
-        System.out.println("Essa opção não existe!");
-        System.out.println("Tente novamente!");
+        ExceptionUtils.trataErro("Essa opção não existe!\nTente novamente!");
         timeout(2);
     }
 
