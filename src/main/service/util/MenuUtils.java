@@ -111,12 +111,14 @@ public class MenuUtils {
                 case 1 -> {
                     System.out.println();
                     timeout(1);
+                    produtoService.listarIdENome().forEach(System.out::println);
                     Produto produto = MenuUtils.getProdutoFromUser();
                     System.out.println("Inserindo produto...");
                     produtoService.insere(produto);
                     mensagemSucesso();
                 }
                 case 2 -> {
+                    System.out.println();
                     timeout(1);
                     produtoService.listarIdENome().forEach(System.out::println);
                     dto = MenuUtils.getProdutoDTOFromUser();
@@ -125,6 +127,7 @@ public class MenuUtils {
                     mensagemSucesso();
                 }
                 case 3 -> {
+                    System.out.println();
                     timeout(1);
                     produtoService.listarIdENome().forEach(System.out::println);
                     dto = MenuUtils.getProdutoDTOFromUser();
@@ -133,11 +136,13 @@ public class MenuUtils {
                     mensagemSucesso();
                 }
                 case 4 -> {
+                    System.out.println();
                     List<String> lista = produtoService.listar();
                     lista.forEach(System.out::println);
                     voltarMenu();
                 }
                 case 5 -> {
+                    System.out.println();
                     List<String> lista = produtoService.listarAbaixoEstoque();
                     lista.forEach(System.out::println);
                     voltarMenu();
@@ -163,7 +168,7 @@ public class MenuUtils {
     }
 
     private static void voltarMenu() {
-        System.out.println(ColorUtils.BLUE_BOLD + "Para continuar pressione enter" + ColorUtils.RESET);
+        System.out.print(ColorUtils.BLUE_BOLD + "Para continuar pressione enter" + ColorUtils.RESET);
         input.nextLine();
     }
 
