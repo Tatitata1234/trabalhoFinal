@@ -42,7 +42,7 @@ public class ArquivoUtils {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
 
-            for (Produto prod : Estoque.getProdutosListado()) {
+            for (Produto prod : Estoque.getProdutos()) {
                 bw.write(prod.formatarSaida() + "\n");
             }
 

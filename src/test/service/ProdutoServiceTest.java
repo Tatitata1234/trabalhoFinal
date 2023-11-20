@@ -119,20 +119,26 @@ public class ProdutoServiceTest {
     @Test
     public void deveListarProdutos() {
         List<String> retorno = tested.listar();
-        assertEquals("[1\t|Caneca de cerâmica\t|10\t|5, 2\t|Estojo rose\t|67\t|4, 345\t|Caneta\t|2\t|5]", Arrays.toString(retorno.toArray()));
+        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
     }
 
     @Test
     public void deveListarProdutosAbaixoDaQuantidadeMinima() {
         List<String> retorno = tested.listarAbaixoEstoque();
-        assertEquals("[345\t|Caneta\t|2\t|5]", Arrays.toString(retorno.toArray()));
+        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
     }
 
     @Test
     public void naoDeveListarProdutosAbaixoDaQuantidadeMinima() {
         Estoque.setProdutos(new ArrayList<>());
         List<String> retorno = tested.listarAbaixoEstoque();
-        assertEquals("[]", Arrays.toString(retorno.toArray()));
+        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|]", Arrays.toString(retorno.toArray()));
     }
 
+    @Test
+    public void deveListarProdutosOrdenado() throws ValidateProdutoException {
+        tested.insere(new Produto(3, "Teste", 6, 9));
+        List<String> retorno = tested.listar();
+        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 3              |Teste                                             |6              |9              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
+    }
 }

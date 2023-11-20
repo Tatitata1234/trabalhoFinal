@@ -4,8 +4,10 @@ import main.entity.Estoque;
 import main.entity.Produto;
 import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
+import main.service.util.MenuUtils;
 import main.service.validator.ProdutoValidator;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class ProdutoService {
 
     public List<String> listar() {
         List<String> strings = new ArrayList<>();
+        MenuUtils.getHeader(strings);
         for (Produto prod : Estoque.getProdutosListado()) {
             strings.add(prod.toString());
         }
@@ -41,6 +44,7 @@ public class ProdutoService {
 
     public List<String> listarAbaixoEstoque() {
         List<String> strings = new ArrayList<>();
+        MenuUtils.getHeader(strings);
         for (Produto prod : Estoque.getProdutosListado()) {
             if (prod.getQuantidade() < prod.getQuantidadeMinima()) {
                 strings.add(prod.toString());
@@ -49,5 +53,11 @@ public class ProdutoService {
         return strings;
     }
 
+    public List<String> listarIdENome() {
+        List<String> strings = new ArrayList<>();
+        MenuUtils.getHeaderResumido(strings);
+        Estoque.getProdutosListado().forEach(item -> strings.add(item.toStringResumido()));
+        return strings;
+    }
 
 }

@@ -10,20 +10,7 @@ public class Estoque {
     }
 
     public static List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public static List<Produto> getProdutosListado() {
-        int i = 0;
-
-        while (i < (Estoque.produtos.size() - 1) ) {
-            if (Estoque.produtos.get(i).getCodigo() > Estoque.produtos.get(i+1).getCodigo()){
-                Produto temp = Estoque.produtos.get(i);
-                Estoque.produtos.set(i,Estoque.produtos.get(i+1));
-                Estoque.produtos.set(i+1,temp);
-            }
-            i++;
-        }
+        ordenaProdutos();
         return produtos;
     }
 
@@ -33,5 +20,18 @@ public class Estoque {
 
     public static void add(Produto produto) {
         produtos.add(produto);
+    }
+
+    private static void ordenaProdutos() {
+        int i = 0;
+
+        while (i < (produtos.size() - 1) ) {
+            if (produtos.get(i).getCodigo() > produtos.get(i+1).getCodigo()){
+                Produto temp = produtos.get(i);
+                produtos.set(i,produtos.get(i+1));
+                produtos.set(i+1,temp);
+            }
+            i++;
+        }
     }
 }

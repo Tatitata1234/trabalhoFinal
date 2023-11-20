@@ -12,4 +12,9 @@ public class ExceptionUtils {
         System.out.println("ERRO!");
     }
 
+    public static void trataErro(String message) {
+        System.out.println(ColorUtils.RED_BOLD + "ERRO!");
+        System.out.println(message);
+        System.out.println("ERRO!" + ColorUtils.RESET);
+    }
 }
