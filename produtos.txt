@@ -1,7 +1,8 @@
 1,Caneca de cerâmica,10,5
 2,Estojo rose,67,4
 3,Garrafa,13,3
-4,6,8,1
-5,Batata Doce,10,5
-100,Caderno cd 200 fls brief case,0,20
-345,Canete,2,5
+4,Batata Doce,10,5
+5,Caderno cd 200 fls brief case,0,20
+6,Lápis de Escrever,120,10
+7,Caneta,2,5
+8,Lapis 6B,100,10

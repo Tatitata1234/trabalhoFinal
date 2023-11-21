@@ -1,4 +1,0 @@
-1,Caneca de cerâmica,10,5
-2,Estojo rose,67,4
-3,Estojo,34,5
-345,Canete,2,5

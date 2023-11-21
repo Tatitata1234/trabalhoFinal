@@ -19,6 +19,12 @@ public class Produto {
         this.quantidadeMinima = quantidadeMinima;
     }
 
+    public Produto(String nome, int quantidade, int quantidadeMinima) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.quantidadeMinima = quantidadeMinima;
+    }
+
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
