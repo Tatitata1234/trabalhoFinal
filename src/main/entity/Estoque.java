@@ -6,6 +6,8 @@ import java.util.List;
 public class Estoque {
     private static List<Produto> produtos = new ArrayList<>();
 
+    private static int nextId = 100;
+
     private Estoque(){
     }
 
@@ -16,10 +18,18 @@ public class Estoque {
 
     public static void setProdutos(List<Produto> produtos) {
         Estoque.produtos = produtos;
+        int tam = produtos.size();
+        nextId = produtos.get(tam-1).getCodigo()+1;
     }
 
     public static void add(Produto produto) {
-        produtos.add(produto);
+        if (produto.getCodigo() == 0) {
+            produto.setCodigo(nextId);
+            nextId++;
+            produtos.add(produto);
+        } else {
+            produtos.add(produto);
+        }
     }
 
     private static void ordenaProdutos() {

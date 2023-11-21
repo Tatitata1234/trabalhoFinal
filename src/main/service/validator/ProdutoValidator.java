@@ -23,7 +23,7 @@ public class ProdutoValidator {
         if (Objects.isNull(produto))
             throw new ValidateProdutoException("Produto nulo");
 
-        if (produto.getCodigo() <= 0)
+        if (produto.getCodigo() < 0)
             throw new ValidateProdutoException("Código" + DO_PRODUTO_INVALIDO);
 
         if (produto.getQuantidadeMinima() <= 0)
