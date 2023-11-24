@@ -5,7 +5,6 @@ import main.entity.Produto;
 import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
 import main.service.ProdutoService;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,10 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class ProdutoServiceTest {
-    private List<Produto> produtos = new ArrayList<>();
+    private final List<Produto> produtos = new ArrayList<>();
     private ProdutoDTO dto;
     private ProdutoService tested;
     private Produto produto;
+    private static final String QTD_INVALIDA = "Quantidade invalida!";
 
     @Before
     public void init() {
@@ -37,7 +37,7 @@ public class ProdutoServiceTest {
     public void deveInserirProduto() throws ValidateProdutoException {
         tested.insere(produto);
         assertEquals(4, Estoque.getProdutos().size());
-        assertEquals(produto, Estoque.getProdutos().get(3));
+        assertEquals(produto, Estoque.getProdutos().get(2));
     }
 
     @Test
@@ -85,13 +85,13 @@ public class ProdutoServiceTest {
     @Test
     public void naoDeveRetirarQuantidadeNegativa() {
         dto.setQuant(-1);
-        assertThrows("Quantidade invalida!", ValidateProdutoException.class, () -> tested.retirarQuant(dto));
+        assertThrows(QTD_INVALIDA, ValidateProdutoException.class, () -> tested.retirarQuant(dto));
     }
 
     @Test
     public void naoDeveDeixarQuantidadeNegativa() {
         dto.setQuant(produtos.get(0).getQuantidade() + 1);
-        assertThrows("Quantidade invalida!", ValidateProdutoException.class, () -> tested.retirarQuant(dto));
+        assertThrows(QTD_INVALIDA, ValidateProdutoException.class, () -> tested.retirarQuant(dto));
     }
 
     @Test
@@ -113,32 +113,32 @@ public class ProdutoServiceTest {
     @Test
     public void naoDeveAdicionarQuantidadeNegativa() {
         dto.setQuant(-1);
-        assertThrows("Quantidade invalida!", ValidateProdutoException.class, () -> tested.adicionarQuant(dto));
+        assertThrows(QTD_INVALIDA, ValidateProdutoException.class, () -> tested.adicionarQuant(dto));
     }
 
     @Test
     public void deveListarProdutos() {
         List<String> retorno = tested.listar();
-        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
+        assertEquals("[\u001B[0;33mCódigo         |Nome                                              |Quantidade     |Quantidade míni|\u001B[0m, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
     }
 
     @Test
     public void deveListarProdutosAbaixoDaQuantidadeMinima() {
         List<String> retorno = tested.listarAbaixoEstoque();
-        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
+        assertEquals("[\u001B[0;33mCódigo         |Nome                                              |Quantidade     |Quantidade míni|\u001B[0m, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
     }
 
     @Test
     public void naoDeveListarProdutosAbaixoDaQuantidadeMinima() {
         Estoque.setProdutos(new ArrayList<>());
         List<String> retorno = tested.listarAbaixoEstoque();
-        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|]", Arrays.toString(retorno.toArray()));
+        assertEquals("[\u001B[0;33mCódigo         |Nome                                              |Quantidade     |Quantidade míni|\u001B[0m]", Arrays.toString(retorno.toArray()));
     }
 
     @Test
     public void deveListarProdutosOrdenado() throws ValidateProdutoException {
         tested.insere(new Produto(3, "Teste", 6, 9));
         List<String> retorno = tested.listar();
-        assertEquals("[Código         |Nome                                              |Quantidade     |Quantidade míni|, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 3              |Teste                                             |6              |9              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
+        assertEquals("[\u001B[0;33mCódigo         |Nome                                              |Quantidade     |Quantidade míni|\u001B[0m, 1              |Caneca de cerâmica                                |10             |5              |, 2              |Estojo rose                                       |67             |4              |, 3              |Teste                                             |6              |9              |, 345            |Caneta                                            |2              |5              |]", Arrays.toString(retorno.toArray()));
     }
 }

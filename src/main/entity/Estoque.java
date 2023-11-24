@@ -19,7 +19,9 @@ public class Estoque {
     public static void setProdutos(List<Produto> produtos) {
         Estoque.produtos = produtos;
         int tam = produtos.size();
-        nextId = produtos.get(tam-1).getCodigo()+1;
+        if (tam != 0) {
+            nextId = produtos.get(tam-1).getCodigo()+1;
+        }
     }
 
     public static void add(Produto produto) {
