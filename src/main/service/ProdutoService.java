@@ -7,7 +7,6 @@ import main.exception.ValidateProdutoException;
 import main.service.util.MenuUtils;
 import main.service.validator.ProdutoValidator;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

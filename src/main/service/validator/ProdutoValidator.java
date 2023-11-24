@@ -6,7 +6,6 @@ import main.entity.dto.ProdutoDTO;
 import main.exception.ValidateProdutoException;
 import main.service.util.ProdutoUtils;
 
-import java.util.List;
 import java.util.Objects;
 
 public class ProdutoValidator {
